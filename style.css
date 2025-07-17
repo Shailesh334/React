@@ -370,3 +370,8 @@ html, body {
     background-position: 200% 0;
   }
 }
+
+a {
+  text-decoration: none;
+}
+

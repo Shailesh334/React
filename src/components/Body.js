@@ -2,7 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { resList } from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-
+import { Link } from "react-router";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
@@ -16,16 +16,15 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.6625542&lng=75.90852799999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.52808&lng=73.8720171&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
     const json = await data.json();
     let apiData =
-      json.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-      
+      json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+
     setFilteredRestaurants(apiData);
     setListOfRestaurants(apiData);
-   
   };
 
   return listOfRestaurants.length === 0 ? (
@@ -76,7 +75,9 @@ const Body = () => {
 
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} dataObj={restaurant} />
+        
+            <RestaurantCard key={restaurant.info.id} dataObj={restaurant} />
+         
         ))}
 
         {/* /*     NOT RECOMMENDED BAD PRACTICE
